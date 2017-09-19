@@ -290,6 +290,7 @@ set_global_assignment -name VERILOG_FILE msp430/omsp_clock_gate.v
 set_global_assignment -name VERILOG_FILE msp430/omsp_and_gate.v
 set_global_assignment -name VERILOG_FILE msp430/omsp_alu.v
 set_global_assignment -name VERILOG_FILE msp430/hexdecoder.v
+set_global_assignment -name VERILOG_FILE msp430/mymul.v
 set_global_assignment -name QIP_FILE ram16x27648.qip
 set_global_assignment -name QIP_FILE ram16x4096.qip
 set_global_assignment -name QSYS_FILE mspconnect.qsys
