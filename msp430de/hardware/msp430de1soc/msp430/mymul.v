@@ -33,11 +33,11 @@ module  mymul (
        end
      else
        begin
-	  hw_a        <= write_a      ? per_din[15:0]   : hw_a;
-	  hw_b        <= write_b      ? per_din[15:0]   : hw_b;
-	  hw_retvallo <= write_retval ? mulresult[15:0] : hw_retvallo;
-	  hw_retvalhi <= write_retval ? mulresult[31:0] : hw_retvalhi;
-	  hw_ctl      <= write_ctl    ? per_din[0]      : hw_ctl;
+	  hw_a        <= write_a      ? per_din[15:0]    : hw_a;
+	  hw_b        <= write_b      ? per_din[15:0]    : hw_b;
+	  hw_retvallo <= write_retval ? mulresult[15:0]  : hw_retvallo;
+	  hw_retvalhi <= write_retval ? mulresult[31:16] : hw_retvalhi;
+	  hw_ctl      <= write_ctl    ? per_din[0]       : hw_ctl;
 	  hw_ctl_old  <= hw_ctl;
        end
    

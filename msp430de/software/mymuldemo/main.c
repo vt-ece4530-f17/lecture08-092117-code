@@ -19,20 +19,59 @@ unsigned long mymul_hw(unsigned a, unsigned b) {
   return HW_RETVAL;
 }
 
+unsigned count = 0;
+
+unsigned TimerLap() {
+  unsigned lap;
+  TACTL &= ~(MC1 | MC0);
+  lap = TAR - count;
+  count = TAR;
+  TACTL |= MC1;
+  return lap;
+}
+
+char c16[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+
+void printfhex(int k) {
+  putchar(c16[((k>>12) & 0xF)]);
+  putchar(c16[((k>>8 ) & 0xF)]);
+  putchar(c16[((k>>4 ) & 0xF)]);
+  putchar(c16[((k    ) & 0xF)]);
+  long_delay(300);
+}
+
 int main(void) {
   unsigned i, j;
-  unsigned long c;
+  unsigned long chw, csw;
+  unsigned timehw, timesw;
   
+  TACTL  |= (TASSEL1 | MC1 | TACLR);
   de1soc_init();
   
   while (1) {
-    for (i=1; i<255; i++) 
-      for (j=1; j<255; j++) {
-	c = mymul(i,j);
-	de1soc_hexlo(c);
-	c = mymul_hw(i,j);
-	de1soc_hexhi(c);
-	long_delay(100);
+    for (i=500; i<755; i++) 
+      for (j=500; j<755; j++) {
+	
+	TimerLap();
+	csw = mymul(i,j);
+	timesw = TimerLap();
+	
+	TimerLap();
+	chw = mymul_hw(i,j);
+	timehw = TimerLap();
+	
+	de1soc_hexlo(csw);
+	de1soc_hexhi(chw);
+	printfhex(timesw);
+	putchar(' ');
+	printfhex(timehw);
+	putchar(' ');
+	printfhex(csw >> 16L);
+	printfhex(csw);
+	putchar(' ');
+	printfhex(chw >> 16L);
+	printfhex(chw);
+	putchar('\n');
       }
   }
   LPM0;
