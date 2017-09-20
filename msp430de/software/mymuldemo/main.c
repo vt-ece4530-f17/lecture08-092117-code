@@ -5,13 +5,13 @@
 #define HW_RETVAL (*(volatile unsigned long *) 0x144)
 #define HW_CTL    (*(volatile unsigned *)      0x148)
 
-unsigned long mymul(unsigned a, unsigned b) {
+unsigned long  __attribute__ ((noinline)) mymul(unsigned a, unsigned b) {
    unsigned long r;
    r = (unsigned long) a * b;
    return r;
 }
 
-unsigned long mymul_hw(unsigned a, unsigned b) {
+unsigned long  __attribute__ ((noinline)) mymul_hw(unsigned a, unsigned b) {
   HW_A = a;
   HW_B = b;
   HW_CTL = 1;

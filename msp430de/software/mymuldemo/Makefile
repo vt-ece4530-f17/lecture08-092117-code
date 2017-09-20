@@ -2,7 +2,7 @@
 MSPBASE=/cygdrive/c/ti/msp430_gcc/bin
 # configuration
 MSPCC=${MSPBASE}/msp430-elf-gcc
-MSPCCFLAGS=-Wall -fdata-sections -ffunction-sections -mmcu=msp430c1111 
+MSPCCFLAGS=-Wall -Os -fdata-sections -ffunction-sections -mmcu=msp430c1111 
 MSPLDFLAGS=-mmcu=msp430c1111 -Wl,--gc-sections -minrt -T linker.x 
 MSPOBJCOPY=${MSPBASE}/msp430-elf-objcopy
 MSPOBJDUMP=${MSPBASE}/msp430-elf-objdump
