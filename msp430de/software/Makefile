@@ -14,6 +14,6 @@ compile:
 	cd hal;          make compile; cd ..
 	cd demode1soc;   make compile; cd ..
 	cd timerde1soc;  make compile; cd ..
-	cd transpose;    make transpose; cd ..
+	cd transpose;    make compile; cd ..
 	cd mymuldemo;    make compile; cd ..
 
